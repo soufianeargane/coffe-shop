@@ -9,6 +9,7 @@ editBtns.forEach((editBtn) => {
         document.querySelector(".id-update").value = m;
     });
 });
+
 function getSingleData(id) {
     let xhr = new XMLHttpRequest();
     xhr.open("GET", "/update-modal/" + id, true);

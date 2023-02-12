@@ -13,35 +13,42 @@
 <body>
     @include('nav')
     <br>
-    <h1>edit profile</h1>
 
 
-    <br>
-    @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-            @endforeach
-        </ul>
+
+    <div>
+        <div class="w-80 bg-gray-300 mx-auto">
+
+
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
+
+
+
+            <form class="p-4" action="{{route('user-profile-information.update')}}" method="post">
+                <h1>Edit my profile</h1>
+                @if (session('status'))
+                <div class="mb-4 font-medium text-sm text-green-600">
+                    {{ session('status') }}
+                </div>
+                @endif
+                @csrf
+                @method('put')
+                <label class="block my-4 text-gray-700 text-sm font-bold mb-2" for="">Name</label>
+                <input class="shadow my-4 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{Auth::user()->name ?? old('name')}} " type="name" name="name" id="name" placeholder="name">
+                <label class="block my-4 text-gray-700 text-sm font-bold mb-2" for="">email</label>
+                <input class="shadow my-4 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{Auth::user()->email ?? old('email')}}" type="email" name="email" id="email" placeholder="Email">
+                <br><input class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" value="Update">
+            </form>
+        </div>
     </div>
-    @endif
-
-    @if (session('status'))
-    <div class="alert alert-success">
-        {{ session('status') }}
-    </div>
-    @endif
-
-
-    <form action="{{route('user-profile-information.update')}}" method="post">
-        @csrf
-        @method('put')
-        <br><input value="{{Auth::user()->name ?? old('name')}} " type="name" name="name" id="name" placeholder="name">
-        <br><input value="{{Auth::user()->email ?? old('email')}}" type="email" name="email" id="email" placeholder="Email">
-        <br><input type="submit" value="Update">
-    </form>
-
 </body>
 
 </html>

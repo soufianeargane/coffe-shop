@@ -13,11 +13,11 @@
 <body>
     @include('nav')
     <br>
-    <div class="container">
-        <div class="row justify-content-center">
+    <div class="container mx-auto">
+        <div class="row w- justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Change password') }}</div>
+                    <!-- <div class="card-header">{{ __('Change password') }}</div> -->
 
                     @if ($errors->any())
                     <div class="alert alert-danger">
@@ -29,20 +29,21 @@
                     </div>
                     @endif
 
-                    <div class="card-body">
-                        @if (session ('status') == "password-updated")
-                        <div class="alert alert-success">
-                            Password updated successfully.
-                        </div>
-                        @endif
-                        <form method="POST" action="{{ route('user-password.update') }}">
+                    <div class="">
+                        <form class="w-80 mx-auto p-4" method="POST" action="{{ route('user-password.update') }}">
+                            <h1 class="italic">Change password</h1>
+                            @if (session ('status') == "password-updated")
+                            <div class="mb-4 font-medium text-sm text-green-600">
+                                Password updated successfully.
+                            </div>
+                            @endif
                             @csrf
                             @method('PUT')
-                            <div class="row mb-3">
-                                <label for="current_password" class="col-md-4 col-form-label text-md-end">{{ __('current password') }}</label>
+                            <div>
+                                <label class="block my-4 text-gray-700 text-sm font-bold mb-2" for="current_password">Current password</label>
 
                                 <div class="col-md-6">
-                                    <input id="current_password" type="password" class="form-control @error('current_password','updatePassword') is-invalid @enderror" name="current_password" required autofocus>
+                                    <input id="current_password" type="password" class="shadow my-4 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" class="form-control @error('current_password','updatePassword') is-invalid @enderror" name="current_password" required autofocus>
 
                                     @error('current_password', 'updatePassword')
                                     <span class="invalid-feedback" role="alert">
@@ -52,11 +53,11 @@
                                 </div>
                             </div>
 
-                            <div class="row mb-3">
-                                <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+                            <div>
+                                <label class="block my-4 text-gray-700 text-sm font-bold mb-2" for="password"> New pass</label>
 
                                 <div class="col-md-6">
-                                    <input id="password" type="password" class="form-control @error('password','updatePassword') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                    <input id="password" type="password" class="shadow my-4 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" class="form-control @error('password','updatePassword') is-invalid @enderror" name="password" required autocomplete="new-password">
 
                                     @error('password', 'updatePassword')
                                     <span class="invalid-feedback" role="alert">
@@ -66,18 +67,18 @@
                                 </div>
                             </div>
 
-                            <div class="row mb-3">
-                                <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
+                            <div>
+                                <label class="block my-4 text-gray-700 text-sm font-bold mb-2" for="password-confirm" class="col-md-4 col-form-label text-md-end">Confirm Password</label>
 
                                 <div class="col-md-6">
-                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                    <input id="password-confirm" type="password" class="shadow my-4 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" class="form-control" name="password_confirmation" required autocomplete="new-password">
                                 </div>
                             </div>
 
                             <div class="row mb-0">
                                 <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        {{ __('Save new Password') }}
+                                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                                        Save new Password
                                     </button>
                                 </div>
                             </div>

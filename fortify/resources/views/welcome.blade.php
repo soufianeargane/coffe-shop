@@ -17,12 +17,22 @@
 
 <body class="">
 
-    @foreach ($meals as $customer)
-    <span>{{$customer->id}}</span>
+    <header style="background-image: url('images/header.jpeg');" class="w-full h-screen bg-center bg-cover bg-no-repeat">
+
+    </header>
+    <div class="container mx-auto ">
+        <div class="flex flex-wrap">
+            @foreach ($meals as $customer)
+            <!-- <span>{{$customer->id}}</span>
     <span>{{$customer->title}}</span>
-    <span>{{$customer->image}}</span>
-    <br>
-    @endforeach
+    <span>{{$customer->image}}</span> -->
+            <x-card :meal=$customer />
+            <br>
+            @endforeach
+
+        </div>
+    </div>
+
 
 </body>
 
